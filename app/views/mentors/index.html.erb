@@ -1,0 +1,44 @@
+<h1>Listing Mentor Users</h1>
+
+<% if user_signed_in? &&  current_user.admin = 'true' %>
+
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>Studies level</th>
+    <th>Field</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @mentors.each do |mentor| %>
+  <tr>
+    <td><%= mentor.name %></td>
+    <td><%= mentor.email %></td>
+    <td><%= mentor.phone %></td>
+    <td><%= mentor.studies_level %></td>
+    <td><%= mentor.field_study %></td>
+
+    <td><%= link_to 'Show', mentor %></td>
+    <td><%= link_to 'Edit', edit_mentor_path(mentor) %></td>
+    <td><%= link_to 'Destroy', mentor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+
+
+
+<% end %>
+</table>
+  <%= link_to 'New Mentor', new_mentor_path %>
+    <% else %>
+    You need to be signed in as admin to view the mentors.
+    <li><%= link_to "Login", new_user_session_path  %></li>
+
+<br/>
+
+    <% end %>
+
+

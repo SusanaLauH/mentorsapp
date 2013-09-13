@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+<% if user_signed_in? && current_user.admin = true %>
+<p>
+  <b>Firstname:</b>
+  <%= @user.firstname %>
+</p>
+
+<p>
+  <b>Lastname:</b>
+  <%= @user.lastname %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @user.email %>
+</p>
+
+<p>
+  <b>Password:</b>
+  <%= @user.password %>
+</p>
+
+<p>
+  <b>Studies level:</b>
+  <%= @user.studies_level %>
+</p>
+
+<p>
+  <b>Field:</b>
+  <%= @user.field_study %>
+</p>
+
+<p>
+  <b>Mentor:</b>
+  <%= @user.mentor %>
+</p>
+
+
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back to Home', root_path %>
+<% else %>
+    You need to be signed in as admin to view the users.
+    <li><%= link_to "Login", new_user_session_path  %></li>
+
+<% end %>

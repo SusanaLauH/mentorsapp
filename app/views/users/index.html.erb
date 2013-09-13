@@ -1,0 +1,47 @@
+<h1>Listing Users</h1>
+
+<% if user_signed_in? &&  current_user.admin = 'true' %>
+
+
+<table>
+  <tr>
+    <th>Firstname</th>
+    <th>Lastname</th>
+    <th>Email</th>
+    <th>Password</th>
+    <th>Studies level</th>
+    <th>Field</th>
+    <th>Mentor</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @users.each do |user| %>
+  <tr>
+    <td><%= user.firstname %></td>
+    <td><%= user.lastname %></td>
+    <td><%= user.email %></td>
+    <td><%= user.password %></td>
+    <td><%= user.studies_level %></td>
+    <td><%= user.field_study %></td>
+    <td><%= user.mentor %></td>
+    <td><%= link_to 'Show', user %></td>
+    <td><%= link_to 'Edit', edit_user_path(user) %></td>
+    <td><%= link_to 'Destroy', user, method: :delete, :remote=>true, data: { confirm: 'Are you sure?' } %></td>
+
+
+
+  </tr>
+<% end %>
+</table>
+    <%= link_to 'New Student user', new_user_path %>
+    <% else %>
+    You need to be signed in as admin to view the users.
+    <li><%= link_to "Login", new_user_session_path  %></li>
+
+<br/>
+
+    <% end %>
+
+

@@ -1,0 +1,54 @@
+<div id="page">
+  <div id="page-bgtop">
+    <div id="page-bgbtm">
+    <h2 class="title"><a href="#">Connecting to a Mentor</a></h2>
+
+               <% if user_signed_in? %>
+
+                <% Mentor.all.each do |mentor| %>
+                  <% if mentor.field_study == current_user.field_study %>
+                    The best match for your mentor is: <%= mentor.name %>
+                    <p></p>
+                    Here is the contact information:
+                    <p></p>
+                    Phone: <%= mentor.phone %>
+                    <p></p>
+                    E-mail: <%= mentor.email %>
+                    <% end %>
+                    <%end %>
+                    <p></p>
+                    <p></p>
+                    <br></br>
+
+
+                 <%= form_for @user do |f| %>
+              <%= f.hidden_field mentor: mentor.name %>
+              <%= f.submit "Connect", class: "btn" %>
+          <% end %>
+
+
+
+                    <p> <strong>Connect now if you would like to start now!</p></strong>
+                    <%= link_to 'Connect Now!', root_path %>
+
+
+              <% else %>
+                  <p>You need to have an account to use this resource.</>
+                  <p>
+                  <%= link_to "Create an Account", new_user_registration_path%> or <%= link_to "Log in", new_user_session_path %>
+                  </p>
+              <% end %>
+            </div>
+            <div class="post"></div>
+          </div>
+        </div>
+
+
+
+
+
+    </div>
+    <div class="post"></div>
+  </div>
+                </div>
+    </div>

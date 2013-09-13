@@ -1,0 +1,65 @@
+<div id="page">
+  <div id="page-bgtop">
+    <div id="page-bgbtm">
+
+      <% if user_signed_in? &&  current_user.admin = 'true' %>
+
+         <% if @mentor.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@mentor.errors.count, "error") %> have occurred. Please verify:</h2>
+
+            <ul>
+              <% @mentors.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+
+      <% provide(:title, 'Create mentor Sign up') %>
+      <h1>Create User</h1>
+
+      <div class="row">
+        <div class="span6 offset3">
+          <%= form_for(@mentor) do |f| %>
+
+              <div class="field">
+                <%= f.label :name %><br />
+                <%= f.text_field :name%>
+              </div>
+
+              <div class="field">
+                <%= f.label :email %><br />
+                <%= f.text_field :email %>
+              </div>
+
+              <div class="field">
+                <%= f.label :phone%><br />
+                <%= f.text_field :phone%>
+              </div>
+
+              <div class="field">
+                <%= f.label :studies_level %><br />
+                <%= f.select :studies_level, options_for_select(["High School", "Undergraduate", "Masters", "PhD", "Other"],:disabled => ["Select One"]), :class => 'genForm_dropBox' %>
+              </div>
+
+              <div class="field">
+                <%= f.label :field_study %><br />
+                <%= f.select :field_study, options_for_select(["Computer Science", "Software Management", "Telecommunications", "Software Development", "Electrical Engineering"],:disabled => ["Select One"]), :class => 'genForm_dropBox' %>
+              </div>
+
+              </div>
+
+              <%= f.submit "Create mentor", class: "btn btn-large btn-primary" %>
+                <% end %>
+          </div>
+              <% else %>
+              You need to be signed in as admin to view the users.
+              <li><%= link_to "Login", new_user_session_path  %></li>
+      <%end %>
+
+
+    </div>
+    </div>
+    </div>
+

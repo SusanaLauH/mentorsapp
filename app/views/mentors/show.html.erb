@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @mentor.name%>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @mentor.email %>
+</p>
+
+<p>
+  <b>Phone:</b>
+  <%= @mentor.phone%>
+</p>
+
+<p>
+  <b>Studies level:</b>
+  <%= @mentor.studies_level %>
+</p>
+
+<p>
+  <b>Field:</b>
+  <%= @mentor.field_study %>
+</p>
+
+<%= link_to 'Edit', edit_mentor_path(@mentor) %> |
+<%= link_to 'Back to Home', root_path %>
