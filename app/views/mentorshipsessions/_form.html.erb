@@ -1,0 +1,29 @@
+<%= form_for(@mentorshipsession) do |f| %>
+  <% if @mentorshipsession.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@mentorshipsession.errors.count, "error") %> prohibited this mentorshipsession from being saved:</h2>
+
+      <ul>
+      <% @mentorshipsession.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :mentor_id %><br />
+    <%= f.number_field :mentor_id %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br />
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :field_study%><br />
+    <%= f.text_field :field_study %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

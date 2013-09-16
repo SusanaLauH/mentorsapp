@@ -1,44 +1,50 @@
 <div id="page">
   <div id="page-bgtop">
     <div id="page-bgbtm">
-    <h2 class="title"><a href="#">Connecting to a Mentor</a></h2>
+    <h2 class="title"><a>Connecting to a Mentor</a></h2>
 
-               <% if user_signed_in? %>
 
-                <% Mentor.all.each do |mentor| %>
-                  <% if mentor.field_study == current_user.field_study %>
-                    The best match for your mentor is: <%= mentor.name %>
+  <% if user_signed_in? %>
+
+          <%mentorsession = Mentorshipsession.find_by_user_id(current_user.id) %>
+
+          <% if mentorsession && mentorsession.user_id == current_user.id %>
+          You already have a mentor assigned.
+          <br></br>
+          <%= link_to "View your mentor information", mentor_path(mentorsession.mentor_id) %>
+
+
+          <%else %>
+                   <% Mentor.all.each do |mentor| %>
+                        <% if mentor.field_study == current_user.field_study %>
+                    Your assigned mentor is: <%= mentor.name %>
                     <p></p>
                     Here is the contact information:
                     <p></p>
                     Phone: <%= mentor.phone %>
                     <p></p>
                     E-mail: <%= mentor.email %>
-                    <% end %>
-                    <%end %>
                     <p></p>
                     <p></p>
                     <br></br>
+                     <p> <strong>Create your connection if you would like to start now!</p></strong>
+                    <%= link_to "Create mentorship", mentor.mentorshipsessions.create(user_id: current_user.id, field_study: current_user.field_study) %>
 
+                                                  <p></p>
 
-                 <%= form_for @user do |f| %>
-              <%= f.hidden_field mentor: mentor.name %>
-              <%= f.submit "Connect", class: "btn" %>
-          <% end %>
-
-
-
-                    <p> <strong>Connect now if you would like to start now!</p></strong>
-                    <%= link_to 'Connect Now!', root_path %>
-
-
+                        <%end %>
+                     <%end %>
+                  <ul>
+                  </ul>
+          <%end %>
               <% else %>
+
                   <p>You need to have an account to use this resource.</>
                   <p>
                   <%= link_to "Create an Account", new_user_registration_path%> or <%= link_to "Log in", new_user_session_path %>
                   </p>
-              <% end %>
-            </div>
+
+    </div>
             <div class="post"></div>
           </div>
         </div>
@@ -46,7 +52,7 @@
 
 
 
-
+   <% end %>
     </div>
     <div class="post"></div>
   </div>

@@ -1,12 +1,25 @@
 Mentorsapp::Application.routes.draw do
-  devise_for :users
-  #devise_for :users, :controllers  => {          v
-  root :to  => "home#index"
   resources :mentors
-  resources :users #:controller => 'users'
+  resources :mentorshipsessions
 
-  #match '/users/new'   => 'users#new'
+  #resources :users
 
+  #devise_for :users, :skip => [:registrations, :sessions]
+
+  devise_for :users
+
+  #devise_for :users, :path_prefix => 'my'
+  resources :users
+  #resources :users, :only => [:index, :show]
+  #resources :users
+  #devise_for :users, :controllers  => {          v
+
+  resources :mentors
+ # member do
+ #   get :mentorshipsessions
+ # end
+ # end
+  root :to  => "home#index"
   match '/home'   => 'home#index'
 
   get "static_pages/home"
@@ -25,9 +38,6 @@ Mentorsapp::Application.routes.draw do
   match '/connect',   to: 'static_pages#connect',   via: 'get'
   match '/conferences', to: 'static_pages#conferences', via: 'get'
   match '/articles', to: 'static_pages#articles', via: 'get'
-
-
-
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

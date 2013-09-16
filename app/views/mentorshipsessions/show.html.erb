@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Mentor:</b>
+  <%= @mentorshipsession.mentor_id %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @mentorshipsession.user_id %>
+</p>
+
+<p>
+  <b>Field of Study:</b>
+  <%= @mentorshipsession.field_study %>
+</p>
+
+<% if admin? %>
+<%= link_to 'Edit', edit_mentorshipsession_path(@mentorshipsession) %> |
+<% end %>
+
+<%= link_to 'Back', mentorshipsessions_path %>

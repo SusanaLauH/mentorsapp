@@ -1,5 +1,5 @@
 class MentorsController < ApplicationController
-
+  before_filter :authorized, :only => [:new, :edit, :update, :destroy]
   # GET /mentor
   # GET /mentor.json
   def index
@@ -19,6 +19,8 @@ class MentorsController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @mentor}
+      format.xml { render :xml => @mentor}
+
     end
   end
 
@@ -81,6 +83,17 @@ class MentorsController < ApplicationController
       format.html { redirect_to mentors_url }
       format.json { head :no_content }
     end
+  end
+
+
+  def showsessions
+      @menromentor = Mentor.find(params[:id])
+
+      respond_to do |format|
+        format.html # show.html.erb
+        format.json { render json: @mentor}
+      end
+
   end
 end
 

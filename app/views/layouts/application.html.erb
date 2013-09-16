@@ -37,9 +37,16 @@
         <div id="user_nav">
           <% if user_signed_in? %>
 
-              <h3>You are signed in</h3>
+              <h3>You are signed in as</h3>
+              <% mentorsession = Mentorshipsession.find_by_user_id(current_user.id) %>
+
+              <%= current_user.firstname %>   <%= current_user.lastname%>
+              <br></br>
               <%=link_to "My account", user_path(current_user) %>   ||
               <%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
+              <% if mentorsession && mentorsession.user_id == current_user.id %>  ||
+              <%= link_to "My mentor", mentor_path(mentorsession.mentor_id) %>
+                  <%end %>
 
         <% end %>
         </div>

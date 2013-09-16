@@ -1,0 +1,31 @@
+<h1>Listing mentorshipsessions</h1>
+
+<table>
+  <tr>
+    <th>Mentor</th>
+    <th>User</th>
+    <th>Field of Study</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @mentorshipsessions.each do |mentorshipsession| %>
+  <tr>
+    <td><%= mentorshipsession.mentor_id %></td>
+    <td><%= mentorshipsession.user_id %></td>
+    <td><%= mentorshipsession.field_study%></td>
+    <td><%= link_to 'Show', mentorshipsession %></td>
+
+    <%if admin? %>
+    <td><%= link_to 'Edit', edit_mentorshipsession_path(mentorshipsession) %></td>
+    <td><%= link_to 'Destroy', mentorshipsession, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% end %>
+   </tr>
+<% end %>
+</table>
+
+<br />
+<% if admin? %>
+<%= link_to 'New Mentorshipsession', new_mentorshipsession_path %>
+<% end %>

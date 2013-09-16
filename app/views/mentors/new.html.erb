@@ -2,14 +2,12 @@
   <div id="page-bgtop">
     <div id="page-bgbtm">
 
-      <% if user_signed_in? &&  current_user.admin = 'true' %>
-
-         <% if @mentor.errors.any? %>
+        <% if @mentor.errors.any? %>
           <div id="error_explanation">
             <h2><%= pluralize(@mentor.errors.count, "error") %> have occurred. Please verify:</h2>
 
             <ul>
-              <% @mentors.errors.full_messages.each do |msg| %>
+              <% @mentor.errors.full_messages.each do |msg| %>
                   <li><%= msg %></li>
               <% end %>
             </ul>
@@ -48,18 +46,13 @@
                 <%= f.select :field_study, options_for_select(["Computer Science", "Software Management", "Telecommunications", "Software Development", "Electrical Engineering"],:disabled => ["Select One"]), :class => 'genForm_dropBox' %>
               </div>
 
-              </div>
 
               <%= f.submit "Create mentor", class: "btn btn-large btn-primary" %>
                 <% end %>
-          </div>
-              <% else %>
-              You need to be signed in as admin to view the users.
-              <li><%= link_to "Login", new_user_session_path  %></li>
-      <%end %>
+        </div>
+        </div>
 
-
-    </div>
-    </div>
-    </div>
+  </div>
+  </div>
+</div>
 
